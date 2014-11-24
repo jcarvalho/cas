@@ -136,10 +136,10 @@ hr {
     height: 1px;
     background-color: #CCC;
 }
-.links-list li a {
-    font-size: 1em;
-    text-shadow: 0px 1px 2px rgba(150, 150, 150, 0.2);
-}
+//.links-list li a {
+//    font-size: 1em;
+//    text-shadow: 0px 1px 2px rgba(150, 150, 150, 0.2);
+//}
 fieldset {
     border: 0;
     margin: 0;
@@ -258,6 +258,13 @@ img {
 @media only screen and (max-height: 320px) {
     h1.title a {
         margin: 4px auto 24px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .centered-xs {
+        text-align: center;
+        display: block;
     }
 }
 

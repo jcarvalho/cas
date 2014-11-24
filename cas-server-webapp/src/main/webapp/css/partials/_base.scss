@@ -102,7 +102,7 @@ form fieldset.show-fieldset {
     transition: all 1s ease;
 }
 
-#escolha-autenticacao,
+#auth-method,
 #escolha-recuperacao {
     font-weight: 600;
     overflow: hidden;
@@ -157,11 +157,11 @@ input[type=submit] {
     -webkit-appearance: none;
 }
 input[type="checkbox"] {
-    visibility: hidden;
+    display: none;
 }
 label {
     position: relative;
-    padding: 17px 0 0 20px;
+    padding: 17px 0 0 30px;
     display: block;
     text-align: left;
     cursor: pointer;
@@ -302,30 +302,37 @@ main nav ul li ul li a:hover {
     background: $blue-ist;
 }
 
-.links-list li {
-    display: block;
-    a {
-        padding: 5px;
-        margin: 0;
-    }
-}
-
-// .group-button li {
-//     width: 100%;
-//     background: $white;
-//     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
-//     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
-//     margin: 0 0 2%;
-//     padding: 0;
-//     @include transition(all, .3s, ease);
-//     &:hover {
-//         background: darken($white, 1%);
-//     }
+// .links-list li {
+//     display: block;
 //     a {
-//         padding: 15px;
-//         width: 100%;
+//         padding: 5px;
+//         margin: 0;
 //     }
 // }
+
+// group buttons mobile first
+.group-button li {
+    width: 100%;
+    background: $white;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+    margin: 0 0 2%;
+    padding: 0;
+    @include transition(all, .1s, ease);
+    &:hover {
+        background-color: $blue-ist;
+    }
+    i {
+        margin-right: 10px;
+    }
+    a {
+        padding: 15px;
+        width: 100%;
+        &:hover {
+            color: $white;
+        }
+    }
+}
 
 
 
@@ -416,38 +423,22 @@ footer nav ul li {
             width: 92%;
         }
     }
-    .links-list li {
-        display: inline;
-        &::after {
-            content: attr(data-text);
-        }
-        &:last-of-type {
-            content: " "; /*not working*/
-            color: transparent;
-            text-shadow: none;
-        }
-    }
+    // .links-list li {
+    //     display: inline;
+    //     &::after {
+    //         content: attr(data-text);
+    //     }
+    //     &:last-of-type {
+    //         content: " "; /*not working*/
+    //         color: transparent;
+    //         text-shadow: none;
+    //     }
+    // }
     .group-button li {
         width: 49%;
         float: left;
-        background: $white;
-        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
-        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
-        margin: 0 0 2%;
-        padding: 0;
-        @include transition(all, .3s, ease);
-        &:hover {
-            background: darken($white, 1%);
-        }
         &:nth-child(odd) {
             margin-right: 2%;
-        }
-        i {
-            margin-right: 10px;
-        }
-        a {
-            padding: 15px;
-            width: 100%;
         }
     }
 }

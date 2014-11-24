@@ -28,7 +28,7 @@
             <nav id="auth-box">
                 <ul>
                     <li>
-                        Método de autenticação: <strong id="auth-method">Técnico ID</strong>
+                        Método de autenticação: <span id="auth-method">Técnico ID</span>
                         <i class="icon-down-open">&nbsp;</i>
                         <ul id="auth-modes">
                             <li data-toggle-auth-method="istid"><a href="#">Técnico ID</a></li>
@@ -49,8 +49,15 @@
                     <label for="mem-istid" class="mem-authentication">
                         <input type="checkbox" name="mem-istid"  id="mem-istid" checked="checked"/>
                         <span></span>
-                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços de informática do Técnico.
                     </label>
+
+                    <c:set var="errors"><form:errors/></c:set>
+                    <c:if test="${not empty errors}">
+                        <div class="error-message">
+                            <p><span class="icon-attention">&nbsp;</span>Credencias incorrectas. Por favor tente novamente.</p>
+                        </div>
+                    </c:if>
 
                     <input type="submit" value="Entrar" class="action" name="submit-istid" id="submit-istid">
                 </fieldset>
@@ -78,7 +85,7 @@
                     <label for="mem-kerberos" class="mem-authentication">
                         <input type="checkbox" name="mem-kerberos"  id="mem-kerberos" checked="checked"/>
                         <span></span>
-                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços de informática do Técnico.
                     </label>
 
                     <input type="button" value="Continuar" name="submit-kerberos" id="submit-kerberos">
@@ -106,7 +113,7 @@
                     <label for="mem-cartaocidadao" class="mem-authentication">
                         <input type="checkbox" name="mem-cartaocidadao"  id="mem-cartaocidadao" checked="checked"/>
                         <span></span>
-                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços de informática do Técnico.
                     </label>
 
                     <input type="button" value="Continuar" name="submit-ccidadao" id="submit-ccidadao">
@@ -134,7 +141,7 @@
                     <label for="mem-eideuropeu" class="mem-authentication">
                         <input type="checkbox" name="mem-eideuropeu"  id="mem-eideuropeu" checked="checked"/>
                         <span></span>
-                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços de informática do Técnico.
                     </label>
 
                     <input type="button" value="Continuar" name="submit-eideuropeu" id="submit-eideuropeu">
@@ -145,13 +152,11 @@
                 <input type="hidden" name="execution" value="${flowExecutionKey}" />
                 <input type="hidden" name="_eventId" value="submit" />
 
-                <form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
-
                 <!-- Recuperar pass / Nao tenho ISTID -->
                 <ul>
-                    <li><a href="recuperar.html" class="active">Recuperar palavra-passe</a>
+                    <li class="centered-xs"><a href="https://id.tecnico.ulisboa.pt/password/recover.php">Recuperar palavra-passe</a>
                     </li>
-                    <li class="right"><a href="https://suporte.dsi.tecnico.ulisboa.pt/faq/como-e-que-uma-pessoa-externa-ou-convidada-pode-ter-acesso-temporario-aos-servicos-informaticos">Não tenho Técnico ID</a>
+                    <li class="right hidden-xs"><a href="https://suporte.dsi.tecnico.ulisboa.pt/faq/como-e-que-uma-pessoa-externa-ou-convidada-pode-ter-acesso-temporario-aos-servicos-informaticos">Não tenho Técnico ID</a>
                     </li>
                 </ul>
 

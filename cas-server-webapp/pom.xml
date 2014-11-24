@@ -93,6 +93,7 @@
 
   <properties>
     <cs.dir>${project.parent.basedir}</cs.dir>
+    <license.skip>true</license.skip>
   </properties>
 </project>
 
