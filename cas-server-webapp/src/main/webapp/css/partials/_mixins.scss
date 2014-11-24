@@ -1,0 +1,59 @@
+// Mixins
+// Transition
+@mixin transition ($property, $duration, $effect) {
+    -webkit-transition: $property $duration $effect;
+    -o-transition: $property $duration $effect;
+    transition: $property $duration $effect;
+}
+// Selection
+@mixin selection ($background, $color, $shadow) {
+    background: $background;
+    color: $color;
+    text-shadow: $shadow;
+}
+@mixin no-select () {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+// Extends
+%border-box {
+    box-sizing: border-box;
+}
+%text-hide {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+// Center technique #1
+ %center {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+%center-box {
+    max-width: 620px;
+    max-height: 500px;
+}
+// Center technique #2
+//  %center-window {
+//     width: 100%;
+//     height: 100%;
+//     margin: 0;
+//     padding: 0;
+// }
+// %center-table {
+//     display: table;
+// }
+// %center-table-cell {
+//     display: table-cell;
+//     vertical-align: middle;
+// }
+// %center-container {
+//     max-width: 40em;
+//     margin: 0 auto;
+// }

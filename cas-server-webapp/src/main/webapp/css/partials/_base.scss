@@ -1,0 +1,541 @@
+// Base (main) Layout
+html {
+    background: $white-smoke;
+}
+body {
+    font: 14px/1.5 'Source Sans Pro', Helvetica, Helvetica Neue, Arial;
+    font-weight: 400;
+    color: $gray;
+}
+header,
+main,
+footer {
+    float: left;
+    width: 100%;
+}
+.center-container {
+    padding: 40px 30px 30px;
+    background: $white-smoke;
+}
+a {
+    text-decoration: none;
+    color: $gray;
+    @include transition(all, .3s, ease);
+    &:hover, &:active, &:focus {
+        color: $blue-ist;
+    }
+}
+p {
+    margin: 0.8em 0;
+}
+nav,
+nav ul,
+nav ul li,
+ul,
+ul li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+ul {
+    width: 100%;
+}
+ul.block {
+    margin: 0 0 15px;
+    span {
+        width: 10%;
+        float: left;
+    }
+    li {
+        display: block;
+        width: 90%;
+        float: left;
+    }
+    & a {
+        padding: 0;
+    }
+}
+h1.title {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    a {
+        display: block;
+        margin: 0 auto 44px;
+        width: 200px;
+        height: 47px;
+        padding: 10px;
+        background: url(../img/logotipo-tecnico-c.svg) center center no-repeat;
+        text-indent: 200%; /* 100% not working in Firefox */
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+.no-svg h1.title a {
+    background: url(../img/logotipo-tecnico-c.png) center center no-repeat;
+    background-size: 200px 47px !important;
+}
+// retirar escolha do modo de autenticação (mostra autenticacao Técnico ID)
+
+main nav#autenticacao {
+    display: none;
+}
+
+// mostra sempre o primeiro fieldset
+form fieldset:not(:first-child) {
+    display: none;
+}
+
+form fieldset.hide-fieldset {
+    display: none;
+    // height: auto;
+    // opacity: 0;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+form fieldset.show-fieldset {
+    display: block;
+    // height: 100%;
+    // opacity: 1;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+#escolha-autenticacao,
+#escolha-recuperacao {
+    font-weight: 600;
+    overflow: hidden;
+}
+
+input[type=text], input[type=password] {
+    border: 1px solid #bbb;
+    text-indent: 10px;
+    color: #666;
+    height: 46px;
+    font-weight: 400 !important;
+    &:hover {
+        border-color: $blue-ist;
+    }
+    &:focus {
+        border-color: $blue-ist;
+        color: $blue-ist;
+        box-shadow: none;
+        outline: none;
+        z-index: 10;
+    }
+}
+input[type=text],
+input[type=password] {
+    margin-bottom: -1px;
+}
+input[type=button], input[type=submit] {
+    margin: 20px 0 0;
+    height: 44px;
+    border: none;
+    background: $light-gray;
+    color: $white;
+    font-weight: 600 !important;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, .1);
+    @include transition(all, .3s, ease);
+    &:active, &:focus, &:hover {
+        box-shadow: none;
+        outline: none;
+        background: $blue-ist;
+    }
+}
+input[type=text],
+input[type=password],
+input[type=button],
+input[type=submit] {
+    position: relative;
+    font: 16px/1.5 'Source Sans Pro', Helvetica, Helvetica Neue, Arial;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-border-radius: 0px;
+    -webkit-appearance: none;
+}
+input[type="checkbox"] {
+    visibility: hidden;
+}
+label {
+    position: relative;
+    padding: 17px 0 0 20px;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    @include no-select();
+}
+label input[type="checkbox"] + span,
+label input[type="checkbox"]:checked + span {
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    top: 18px;
+    left: 2px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #bbb;
+}
+
+label input[type="checkbox"]:checked + span:after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 4px;
+    top: 4px;
+    left: 3px;
+    border: 3px solid $blue-ist;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+}
+
+::-webkit-input-placeholder {
+    color: #aaa;
+}
+:-moz-placeholder {
+    color: #aaa;
+}
+::-moz-placeholder {
+    color: #aaa;
+}
+:-ms-input-placeholder {
+    color: #aaa;
+}
+placeholder:focus {
+    color: $blue-ist;
+}
+
+// =========================
+main ul li a {
+    display: inline-block;
+    padding: 10px 0;
+}
+.label-box {
+    display: block;
+    width: 100%;
+    height: 44px;
+    background: darken($gray, 10%);
+    span {
+        display: block;
+        position: relative;
+        height: 45px;
+        text-indent: 10px;
+        padding: 0;
+        line-height: 44px;
+        background: darken($gray, 10%);
+        color: $white;
+    }
+}
+main nav {
+    display: block;
+    width: 100%;
+    height: 44px;
+    background: darken($gray, 10%);
+}
+main nav ul {
+    display: block;
+    width: 100%;
+    &:first-child {
+        height: 45px;
+    }
+}
+main nav ul li {
+    display: block;
+    position: relative;
+    height: 45px;
+    text-indent: 10px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 44px;
+    cursor: pointer;
+    background: darken($gray, 10%);
+    color: $white;
+    &:hover {
+        background: $gray;
+    }
+}
+main nav ul li .arrow {
+    color: $white;
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+main nav ul li ul {
+    display: none;
+    border: 1px solid $blue-ist;
+}
+main nav ul li ul li {
+    border: 1px solid #009de0;
+    border-left: 0;
+    border-right: 0;
+    &:first-of-type {
+        border-top: 0;
+    }
+}
+.show-menu {
+    display: block;
+    position: absolute;
+    margin: 44px 0 0 0;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    border-top: 1px solid $blue-ist;
+}
+main nav ul a {
+    font-weight: 400 !important;
+    float: left;
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    color: $blue-ist !important;
+    background: $white;
+    box-sizing: border-box;
+    padding: 0;
+}
+main nav ul li ul li a:hover {
+    color: $white !important;
+    background: $blue-ist;
+}
+
+.links-list li {
+    display: block;
+    a {
+        padding: 5px;
+        margin: 0;
+    }
+}
+
+// .group-button li {
+//     width: 100%;
+//     background: $white;
+//     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+//     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+//     margin: 0 0 2%;
+//     padding: 0;
+//     @include transition(all, .3s, ease);
+//     &:hover {
+//         background: darken($white, 1%);
+//     }
+//     a {
+//         padding: 15px;
+//         width: 100%;
+//     }
+// }
+
+
+
+// =========================
+
+footer {
+    font-size: 13px;
+    margin: 20px 0 -15px;
+    border-top: thin dotted darken($light-gray, 7%);
+}
+footer nav,
+footer nav ul {
+    position: relative;
+    display: block;
+}
+footer nav ul li {
+    margin: 0 10px 0 0;
+    font-weight: 400 !important;
+    line-height: 3;
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
+
+/* iPhone Portrait ----------- */
+
+@media only screen and (min-width: 569px) {
+    %center-window {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    %center-table {
+        display: table;
+    }
+    %center-table-cell {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    %center-container {
+        max-width: 540px;
+        margin: 0 auto;
+        // padding: 30px 35px;
+        padding: 50px 35px 35px;
+        background: $white-smoke;
+        border-radius: 3px;
+    }
+    html, body {
+        @extend %center-window;
+    }
+    html {
+        @extend %center-table;
+    }
+    body {
+        @extend %center-table-cell;
+    }
+    .center-container {
+        @extend %center-container;
+    }
+    .container-xs {
+        max-width: 420px;
+    }
+    .container-sm {
+        max-width: 500px;
+    }
+    .container-md {
+        max-width: 540px;
+    }
+    .container-lg {
+        max-width: 600px;
+    }
+    #bg {
+        position: fixed;
+        z-index: -10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(../img/bg-01-blur.jpg);
+        background-size: cover;
+    }
+    ul.block {
+        span {
+            width: 8%;
+        }
+        li {
+            width: 92%;
+        }
+    }
+    .links-list li {
+        display: inline;
+        &::after {
+            content: attr(data-text);
+        }
+        &:last-of-type {
+            content: " "; /*not working*/
+            color: transparent;
+            text-shadow: none;
+        }
+    }
+    .group-button li {
+        width: 49%;
+        float: left;
+        background: $white;
+        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.05);
+        margin: 0 0 2%;
+        padding: 0;
+        @include transition(all, .3s, ease);
+        &:hover {
+            background: darken($white, 1%);
+        }
+        &:nth-child(odd) {
+            margin-right: 2%;
+        }
+        i {
+            margin-right: 10px;
+        }
+        a {
+            padding: 15px;
+            width: 100%;
+        }
+    }
+}
+/* iPhone Landscape ----------- */
+
+
+/* Desktop ----------- */
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 1025px) {
+
+    main nav {
+        display: block !important;
+        width: 100%;
+        height: 44px;
+        background: darken($gray, 10%);
+    }
+    main nav ul {
+        display: block;
+        width: 100%;
+        &:first-child{
+        height: 45px;
+        }
+    }
+    main nav ul li {
+        display: block;
+        position: relative;
+        height: 45px;
+        text-indent: 10px;
+        padding: 0;
+        line-height: 44px;
+        cursor: pointer;
+        background: darken($gray, 10%);
+        color: $white;
+        @include transition(all, .3s, ease);
+        &:hover {
+            background: $gray;
+        }
+    }
+    main nav ul li .arrow {
+        color: $white;
+        position: absolute;
+        top: 0;
+        right: 20px;
+    }
+    main nav ul li ul {
+        display: none;
+        border: 1px solid $blue-ist;
+    }
+    main nav ul li ul li {
+        border: 1px solid #009de0;
+        border-left: 0;
+        border-right: 0;
+        &:first-of-type {
+            border-top: 0;
+        }
+    }
+    .mem-authentication {
+        display: block;
+    }
+    // main nav ul li:hover ul {
+    //     display: block;
+    //     position: absolute;
+    //     margin: 44px 0 0 0;
+    //     top: 0;
+    //     left: 0;
+    //     z-index: 20;
+    //     border-top: 1px solid $blue-ist;
+    // }
+    // main nav ul a {
+    //     font-weight: 400 !important;
+    //     float: left;
+    //     width: 100%;
+    //     height: 45px;
+    //     font-size: 16px;
+    //     color: $blue-ist !important;
+    //     background: $white;
+    //     box-sizing: border-box;
+    //     padding: 0;
+    // }
+    // main nav ul li ul li a:hover {
+    //     color: $white !important;
+    //     background: $blue-ist;
+    // }
+    // footer {
+    //     border-top: thin dotted $light-gray;
+    // }
+}

@@ -1,0 +1,276 @@
+// Helper classes
+
+::-moz-selection {
+    @include selection ($blue-ist, $white, none);
+}
+::selection {
+    @include selection ($blue-ist, $white, none);
+}
+* {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @extend %border-box;
+}
+.outdatedbrowser {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 0 20px;
+    background: $white;
+    color: $black;
+    padding: 1em 0;
+    text-align: center;
+}
+.clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.left {
+    text-align: left;
+    float: left;
+    padding-left: 0;
+}
+.right {
+    float: right;
+}
+.active {
+    color: $blue-ist;
+}
+.underline {
+    border-bottom: thin dotted;
+}
+.dotted {
+    border-bottom: thin dotted;
+}
+.single-line {
+    margin: 1.2em 0;
+}
+a.button {
+    border: none;
+    display: inline-block;
+    width: 100%;
+    margin: 40px 0 0;
+    padding: 11px 0;
+    background: $light-gray;
+    color: $white;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    &:hover {
+        background: $blue-ist;
+    }
+}
+.row:first-of-type {
+    margin-top: 20px;
+}
+.row-no-padding {
+    margin-left: 0;
+    margin-right: 0;
+        [class*="col-"] {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+}
+.progress {
+    height: 23px;
+    border-radius: 0;
+    background: $yellow;
+    box-shadow: none;
+    margin: 15px 0;
+    .progress-bar {
+        background: $green;
+        box-shadow: none;
+    }
+}
+
+// input[type=password]:focus {
+//     font:  large Verdana, sans-serif;
+// }
+
+main nav.paises ul > li:hover {
+    background: darken($gray, 5%);
+}
+main nav.paises ul ul {
+    height: 180px !important;
+    overflow: auto;
+}
+
+ul.escolher-pais {
+    li {
+        width: 100%;
+        background: #fff;
+        -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.05);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.05);
+        margin: 0 0 2%;
+        padding: 0;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    i {
+        margin-right: 10px;
+    }
+    a {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+aside.horizontal {
+    margin: 25px 0;
+}
+hr {
+    display: block;
+    border: 0;
+    margin: 1em 0;
+    padding: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #CCC;
+}
+.links-list li a {
+    font-size: 1em;
+    text-shadow: 0px 1px 2px rgba(150, 150, 150, 0.2);
+}
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.light-gray {
+    color: $light-gray;
+    &:hover {
+        color: $gray;
+    }
+}
+.error-message {
+    padding: 5px 10px;
+    margin: 20px 0 0;
+    border: 1px solid #FF9833;
+    p {
+        text-align: center;
+        color: #E86A00;
+    }
+}
+// Icones
+.icon-down-open {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 24px;
+    @include no-select();
+}
+.icon-info-circled,
+.icon-lock {
+    font-size: 26px;
+    margin-left: -7.5px;
+}
+.icon-info-circled:before,
+.icon-lock:before {
+    margin: 15px 0 0;
+}
+.icon-attention {
+    color: darken($yellow, 10%);
+}
+.icon-check {
+    color: $green;
+}
+.ccidadao {
+    background: url(../img/icones/ccidadao.svg) top left no-repeat;
+}
+.no-svg .ccidadao {
+    background: url(../img/icones/ccidadao.png) top left no-repeat;
+    width: 80px;
+    height: 50px;
+    background-size: 80px 50px !important;
+}
+.eid-europeu {
+    background: url(../img/icones/eid_europeu.svg) top left no-repeat;
+}
+.no-svg .eid-europeu {
+    background: url(../img/icones/eid_europeu.png) top left no-repeat;
+    width: 80px;
+    height: 50px;
+    background-size: 80px 50px !important;
+}
+.ccidadao,
+.eid-europeu {
+    display: block;
+    margin: 15px 0;
+    width: 52px;
+    height: 33px;
+    background-size: 52px 33px;
+}
+span.flag-icon {
+    margin-right: 10px;
+}
+.chosen {
+    background: $gray;
+}
+.enabled {
+    background: $blue-ist;
+}
+.disabled {
+    background: $light-gray;
+}
+.center {
+    text-align: center;
+}
+.welcome-user {
+    img {
+        border-radius: 50%;
+        width: 120px;
+        margin: 0 0 1em;
+    }
+    .user-link {
+        border-bottom: thin dotted;
+        &:hover {
+            color: $gray;
+        }
+    }
+}
+img {
+    max-width: 100%;
+}
+
+// Specific media queries for this project
+
+@media only screen and (min-height: 481px) and (max-width: 568px) {
+    h1.title a {
+        width: 170px;
+        height: 88px;
+        background: url(../img/logotipo-tecnico-b.svg) center center no-repeat;
+        background-size: 170px 88px;
+    }
+    .no-svg h1.title a {
+        background: url(../img/logotipo-tecnico-b.png) center center no-repeat;
+        background-size: 170px 88px;
+    }
+}
+@media only screen and (max-height: 320px) {
+    h1.title a {
+        margin: 4px auto 24px;
+    }
+}
+
+// grande batotice esta media querie
+@media only screen and (min-width: 570px) and (max-width: 768px) and (min-height: 420px) {
+    #bg {
+        background: none !important;
+    }
+    .center-container {
+        padding-top: 0;
+        position: absolute;
+        top: 50px;
+        left: 5%;
+        right: 5%;
+    }
+}
