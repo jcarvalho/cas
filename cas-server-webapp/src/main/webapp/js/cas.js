@@ -1,36 +1,46 @@
-/*
- * Licensed to Jasig under one or more contributor license
- * agreements. See the NOTICE file distributed with this work
- * for additional information regarding copyright ownership.
- * Jasig licenses this file to you under the Apache License,
- * Version 2.0 (the "License"); you may not use this file
- * except in compliance with the License.  You may obtain a
- * copy of the License at the following location:
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+(function () {
+    function $(query) { return document.querySelector(query); };
+    function all(selector, listener) {
+        Array.prototype.forEach.call(document.querySelectorAll(selector), function(el) { listener(el); });
+    }
+    function validate(){
+        var action = $('.action'); var form = $('#loginForm');
+        if (form['username'].value && form['password'].value) {
+            action.removeAttribute('disabled'); action.style.backgroundColor = '#009DE0';
+        } else {
+            action.setAttribute('disabled', true); action.style.backgroundColor = '#CCC';
+        }
+    };
+    validate();
 
-$(document).ready(function(){
-    //focus username field
-    $("input:visible:enabled:first").focus();
-    //flash error box
-    $('#msg.errors').animate({ backgroundColor: 'rgb(187,0,0)' }, 30).animate({ backgroundColor: 'rgb(255,238,221)' }, 500);
+    all('form input', function(el) { el.addEventListener('change', validate); });
 
-    //flash success box
-    $('#msg.success').animate({ backgroundColor: 'rgb(51,204,0)' }, 30).animate({ backgroundColor: 'rgb(221,255,170)' }, 500);
-    
-    //flash confirm box
-    $('#msg.question').animate({ backgroundColor: 'rgb(51,204,0)' }, 30).animate({ backgroundColor: 'rgb(221,255,170)' }, 500);
-    
-    /* 
-     * Using the JavaScript Debug library, you may issue log messages such as: 
-     * debug.log("Welcome to Central Authentication Service");
-     */
-});
+    $('#auth-box').addEventListener('click', function() {
+        var modes = $('#auth-modes');
+        modes.className = modes.className ? '' : 'show-menu';
+    });
+    $('.paises').addEventListener('click', function() {
+        var modes = $('#country-chooser');
+        modes.className = modes.className ? '' : 'show-menu';
+    });
+    all('[data-toggle-auth-method]', function(el) {
+        var type = el.getAttribute('data-toggle-auth-method');
+        el.addEventListener('click', function() {
+            all('[data-auth-method]', function(el) { el.style.display = 'none'; });
+            $('#auth-method').parentNode.className = 'chosen';
+            $('#auth-method').innerHTML = el.querySelector('a').innerHTML;
+            $('[data-auth-method=' + type + ']').style.display = 'inherit';
+        });
+    });
+    document.onkeydown = function(e) {
+        if((e.keyCode || e.which) == 27) { $('#auth-modes').className = ''; }
+    };
+    document.addEventListener('click', function(event) {
+        var current = event.target;
+        while(current) {
+            if(current.id == 'auth-box') { return; }
+            current = current.parentNode;
+        }
+        $('#auth-modes').className = '';
+    });
+})();

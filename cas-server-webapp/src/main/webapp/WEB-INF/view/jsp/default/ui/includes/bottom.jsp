@@ -18,30 +18,38 @@
     under the License.
 
 --%>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        </main>
+        <c:set var="locale" value='<%= org.springframework.web.servlet.support.RequestContextUtils.getLocale(request) %>' />
 
-      </div> <!-- END #content -->
-      
-      <footer>
-        <div id="copyright">
-          <p><spring:message code="copyright" /></p>
-          <p>Powered by <a href="http://www.jasig.org/cas">Jasig Central Authentication Service <%=org.jasig.cas.CasVersion.getVersion()%></a></p>
-        </div>
-      </footer>
+        <c:set var='query' value='${pageContext.request.queryString.replaceAll("&locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]|^locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]", "")}' />
+        <c:set var="xquery" value="${fn:escapeXml(query)}" />
+        <c:set var="loginUrl" value="login?${xquery}${not empty xquery ? '&' : ''}locale=" />
 
-    </div> <!-- END #container -->
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    
-    <%-- 
-        JavaScript Debug: A simple wrapper for console.log 
-        See this link for more info: http://benalman.com/projects/javascript-debug-console-log/
-    --%>
-    <script type="text/javascript" src="https://github.com/cowboy/javascript-debug/raw/master/ba-debug.min.js"></script>
-    
-    <spring:theme code="cas.javascript.file" var="casJavascriptFile" text="" />
-    <script type="text/javascript" src="<c:url value="${casJavascriptFile}" />"></script>
-  </body>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="security.jsp">Segurança</a></li>
+                    <li><a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/">Suporte</a></li>
+                    <c:choose>
+                      <c:when test="${locale.language == 'en'}">
+                        <li class="right"><a href="${loginUrl}pt" class="active icon-globe">Português</a></li>
+                      </c:when>
+                      <c:otherwise>
+                        <li class="right"><a href="${loginUrl}en" class="active icon-globe">English</a></li>
+                      </c:otherwise>
+                    </c:choose>
+                </ul>
+            </nav>
+        </footer>
+
+        <span class="clearfix"></span>
+    </div>
+    <!-- end #container -->
+
+    <!-- Scripts -->
+    <script src="<c:url value="/js/cas.js" />"></script>
+</body>
+
 </html>
-
