@@ -13,7 +13,7 @@
     };
     validate();
 
-    all('form input', function(el) { el.addEventListener('change', validate); });
+    all('form input', function(el) { el.addEventListener('change', validate); el.addEventListener('keyup', validate) });
 
     $('#auth-box').addEventListener('click', function() {
         var modes = $('#auth-modes');

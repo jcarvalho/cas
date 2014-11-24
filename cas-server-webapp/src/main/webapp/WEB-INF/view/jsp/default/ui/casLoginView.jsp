@@ -43,8 +43,8 @@
             <form:form method="post" id="loginForm" commandName="${commandName}" htmlEscape="true">
                 <!-- Técnico ID -->
                 <fieldset data-auth-method="istid">
-                    <form:input cssClass="required" cssErrorClass="error" id="username" size="10" tabindex="1" path="username" autocomplete="off" htmlEscape="true" placeholder="Técnico ID" />                    
-                    <form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" placeholder="Palavra-passe" required="required" />
+                    <form:input cssClass="required" cssErrorClass="error" id="username" size="10" tabindex="1" path="username" htmlEscape="true" placeholder="Técnico ID" autofocus="autofocus" />
+                    <form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" placeholder="Palavra-passe" required="required" />
 
                     <label for="mem-istid" class="mem-authentication">
                         <input type="checkbox" name="mem-istid"  id="mem-istid" checked="checked"/>
