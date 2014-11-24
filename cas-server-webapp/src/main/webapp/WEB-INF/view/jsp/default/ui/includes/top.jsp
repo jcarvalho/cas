@@ -27,6 +27,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:if test="${empty bg}"><c:set var="bg" scope="session"><%= (int) (Math.random() * 5) + 1 %></c:set></c:if>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
@@ -71,7 +74,7 @@
 <![endif]-->
 
     <c:if test="${empty requestScope['isMobile']}">
-        <div id="bg" style="background: url(images/bg-0<%= (int) (Math.random() * 5) + 1 %>-blur.jpg)"></div>
+        <div id="bg" style="background: url(images/bg-0${bg}-blur.jpg)"></div>
     </c:if>
 
     <!-- Page Container -->
