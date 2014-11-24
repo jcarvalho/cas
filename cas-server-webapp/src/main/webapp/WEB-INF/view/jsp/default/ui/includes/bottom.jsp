@@ -20,7 +20,6 @@
 --%>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        </main>
         <c:set var="locale" value='<%= org.springframework.web.servlet.support.RequestContextUtils.getLocale(request) %>' />
 
         <c:set var='query' value='${pageContext.request.queryString.replaceAll("&locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]|^locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]", "")}' />

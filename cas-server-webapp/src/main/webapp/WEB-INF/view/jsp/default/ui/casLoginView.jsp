@@ -18,135 +18,144 @@
     under the License.
 
 --%>
+<%@ page pageEncoding="UTF-8" %>
 <jsp:directive.include file="includes/top.jsp" />
+        <header>
+            <h1 class="title"><a href="#">Autenticação no Técnico Lisboa</a></h1>
+        </header>
 
-<c:if test="${not pageContext.request.secure}">
-  <div id="msg" class="errors">
-    <h2>Non-secure Connection</h2>
-    <p>You are currently accessing CAS over a non-secure connection.  Single Sign On WILL NOT WORK.  In order to have single sign on work, you MUST log in over HTTPS.</p>
-  </div>
-</c:if>
+        <main>
+            <nav id="auth-box">
+                <ul>
+                    <li>
+                        Método de autenticação: <strong id="auth-method">Técnico ID</strong>
+                        <i class="icon-down-open">&nbsp;</i>
+                        <ul id="auth-modes">
+                            <li data-toggle-auth-method="istid"><a href="#">Técnico ID</a></li>
+                            <li data-toggle-auth-method="kerberos"><a href="#">Kerberos</a></li>
+                            <li data-toggle-auth-method="cartaocidadao"><a href="#">Cartão de Cidadão</a></li>
+                            <li data-toggle-auth-method="eideuropeu"><a href="#">Credenciais e-ID Europeias</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
 
-<div class="box" id="login">
-  <form:form method="post" id="fm1" commandName="${commandName}" htmlEscape="true">
+            <form:form method="post" id="loginForm" commandName="${commandName}" htmlEscape="true">
+                <!-- Técnico ID -->
+                <fieldset data-auth-method="istid">
+                    <form:input cssClass="required" cssErrorClass="error" id="username" size="10" tabindex="1" path="username" autocomplete="off" htmlEscape="true" placeholder="Técnico ID" />                    
+                    <form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" placeholder="Palavra-passe" required="required" />
 
-    <form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
-  
-    <h2><spring:message code="screen.welcome.instructions" /></h2>
-  
-    <section class="row">
-      <label for="username"><spring:message code="screen.welcome.label.netid" /></label>
-      <c:choose>
-        <c:when test="${not empty sessionScope.openIdLocalId}">
-          <strong>${sessionScope.openIdLocalId}</strong>
-          <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
-        </c:when>
-        <c:otherwise>
-          <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-          <form:input cssClass="required" cssErrorClass="error" id="username" size="25" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="off" htmlEscape="true" />
-        </c:otherwise>
-      </c:choose>
-    </section>
-    
-    <section class="row">
-      <label for="password"><spring:message code="screen.welcome.label.password" /></label>
-      <%--
-      NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
-      "autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
-      information, see the following web page:
-      http://www.technofundo.com/tech/web/ie_autocomplete.html
-      --%>
-      <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
-      <form:password cssClass="required" cssErrorClass="error" id="password" size="25" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
-    </section>
-    
-    <section class="row check">
-      <input id="warn" name="warn" value="true" tabindex="3" accesskey="<spring:message code="screen.welcome.label.warn.accesskey" />" type="checkbox" />
-      <label for="warn"><spring:message code="screen.welcome.label.warn" /></label>
-    </section>
-    
-    <section class="row btn-row">
-      <input type="hidden" name="lt" value="${loginTicket}" />
-      <input type="hidden" name="execution" value="${flowExecutionKey}" />
-      <input type="hidden" name="_eventId" value="submit" />
+                    <label for="mem-istid" class="mem-authentication">
+                        <input type="checkbox" name="mem-istid"  id="mem-istid" checked="checked"/>
+                        <span></span>
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                    </label>
 
-      <input class="btn-submit" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
-      <input class="btn-reset" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
-    </section>
-  </form:form>
-</div>
-  
-<div id="sidebar">
-  <div class="sidebar-content">
-    <p><spring:message code="screen.welcome.security" /></p>
-    
-    <div id="list-languages">
-      <%final String queryString = request.getQueryString() == null ? "" : request.getQueryString().replaceAll("&locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]|^locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]", "");%>
-      <c:set var='query' value='<%=queryString%>' />
-      <c:set var="xquery" value="${fn:escapeXml(query)}" />
-      
-      <h3>Languages:</h3>
-      
-      <c:choose>
-        <c:when test="${not empty requestScope['isMobile'] and not empty mobileCss}">
-          <form method="get" action="login?${xquery}">
-            <select name="locale">
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="ru">Russian</option>
-              <option value="nl">Nederlands</option>
-              <option value="sv">Svenska</option>
-              <option value="it">Italiano</option>
-              <option value="ur">Urdu</option>
-              <option value="zh_CN">Chinese (Simplified)</option>
-              <option value="zh_TW">Chinese (Traditional)</option>
-              <option value="de">Deutsch</option>
-              <option value="ja">Japanese</option>
-              <option value="hr">Croatian</option>
-              <option value="cs">Czech</option>
-              <option value="sl">Slovenian</option>
-              <option value="pl">Polish</option>
-              <option value="ca">Catalan</option>
-              <option value="mk">Macedonian</option>
-              <option value="fa">Farsi</option>
-              <option value="ar">Arabic</option>
-              <option value="pt_PT">Portuguese</option>
-              <option value="pt_BR">Portuguese (Brazil)</option>
-            </select>
-            <input type="submit" value="Switch">
-          </form>
-        </c:when>
-        <c:otherwise>
-          <c:set var="loginUrl" value="login?${xquery}${not empty xquery ? '&' : ''}locale=" />
-          <ul>
-            <li class="first"><a href="${loginUrl}en">English</a></li>
-            <li><a href="${loginUrl}es">Spanish</a></li>
-            <li><a href="${loginUrl}fr">French</a></li>
-            <li><a href="${loginUrl}ru">Russian</a></li>
-            <li><a href="${loginUrl}nl">Nederlands</a></li>
-            <li><a href="${loginUrl}sv">Svenska</a></li>
-            <li><a href="${loginUrl}it">Italiano</a></li>
-            <li><a href="${loginUrl}ur">Urdu</a></li>
-            <li><a href="${loginUrl}zh_CN">Chinese (Simplified)</a></li>
-            <li><a href="${loginUrl}zh_TW">Chinese (Traditional)</a></li>
-            <li><a href="${loginUrl}de">Deutsch</a></li>
-            <li><a href="${loginUrl}ja">Japanese</a></li>
-            <li><a href="${loginUrl}hr">Croatian</a></li>
-            <li><a href="${loginUrl}cs">Czech</a></li>
-            <li><a href="${loginUrl}sl">Slovenian</a></li>
-            <li><a href="${loginUrl}ca">Catalan</a></li>
-            <li><a href="${loginUrl}mk">Macedonian</a></li>
-            <li><a href="${loginUrl}fa">Farsi</a></li>
-            <li><a href="${loginUrl}ar">Arabic</a></li>
-            <li><a href="${loginUrl}pt_PT">Portuguese</a></li>
-            <li><a href="${loginUrl}pt_BR">Portuguese (Brazil)</a></li>
-            <li class="last"><a href="${loginUrl}pl">Polish</a></li>
-          </ul>
-        </c:otherwise>
-      </c:choose>
-    </div>
-  </div>
-</div>
+                    <input type="submit" value="Entrar" class="action" name="submit-istid" id="submit-istid">
+                </fieldset>
+                <!-- end fieldset Técnico ID -->
+
+                <!-- KERBEROS -->
+                <fieldset data-auth-method="kerberos">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="icon-lock active"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <p>Requisitos para
+                                    <a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/" class="underline">autenticação por via do sistema Kerberos</a>:</p>
+                                <ul class="block">
+                                    <span class="icon-right-open-mini"> </span><li>suporte de Kerberos funcional no sistema operativo</li>
+                                    <span class="icon-right-open-mini"> </span><li>aquisição prévia de um TGT</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <label for="mem-kerberos" class="mem-authentication">
+                        <input type="checkbox" name="mem-kerberos"  id="mem-kerberos" checked="checked"/>
+                        <span></span>
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                    </label>
+
+                    <input type="button" value="Continuar" name="submit-kerberos" id="submit-kerberos">
+                </fieldset>
+                <!-- end KERBEROS -->
+
+                <!-- CARTÃO CIDADÃO -->
+                <fieldset data-auth-method="cartaocidadao">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <span class="ccidadao"></span>
+                            </div>
+                            <div class="col-xs-10">
+                                <p>Requisitos para
+                                    <a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/" class="underline">autenticação por via do cartão do cidadão</a>:</p>
+                                <ul class="block">
+                                    <span class="icon-right-open-mini"> </span><li>sistema de leitura em funcionamento</li>
+                                    <span class="icon-right-open-mini"> </span><li>cartão introduzido no leitor</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="mem-cartaocidadao" class="mem-authentication">
+                        <input type="checkbox" name="mem-cartaocidadao"  id="mem-cartaocidadao" checked="checked"/>
+                        <span></span>
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                    </label>
+
+                    <input type="button" value="Continuar" name="submit-ccidadao" id="submit-ccidadao">
+                </fieldset>
+                <!-- end CARTÃO CIDADÃO -->
+
+                <!-- E-ID EUROPEU -->
+                <fieldset data-auth-method="eideuropeu">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <i class="eid-europeu"></i>
+                            </div>
+                            <div class="col-xs-10">
+                                <p>Requisitos para
+                                    <a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/" class="underline">autenticação por via de e-ID Europeu</a>:</p>
+                                <ul class="block">
+                                    <span class="icon-right-open-mini"> </span><li>sistema de leitura em funcionamento</li>
+                                    <span class="icon-right-open-mini"> </span><li>cartão introduzido no leitor</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="mem-eideuropeu" class="mem-authentication">
+                        <input type="checkbox" name="mem-eideuropeu"  id="mem-eideuropeu" checked="checked"/>
+                        <span></span>
+                        Concordo com as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas dos serviços de informática</a> do Técnico.
+                    </label>
+
+                    <input type="button" value="Continuar" name="submit-eideuropeu" id="submit-eideuropeu">
+                </fieldset>
+                <!-- end E-ID EUROPEU -->
+
+                <input type="hidden" name="lt" value="${loginTicket}" />
+                <input type="hidden" name="execution" value="${flowExecutionKey}" />
+                <input type="hidden" name="_eventId" value="submit" />
+
+                <form:errors path="*" id="msg" cssClass="errors" element="div" htmlEscape="false" />
+
+                <!-- Recuperar pass / Nao tenho ISTID -->
+                <ul>
+                    <li><a href="recuperar.html" class="active">Recuperar palavra-passe</a>
+                    </li>
+                    <li class="right"><a href="https://suporte.dsi.tecnico.ulisboa.pt/faq/como-e-que-uma-pessoa-externa-ou-convidada-pode-ter-acesso-temporario-aos-servicos-informaticos">Não tenho Técnico ID</a>
+                    </li>
+                </ul>
+
+            </form:form>
+          </main>
 
 <jsp:directive.include file="includes/bottom.jsp" />

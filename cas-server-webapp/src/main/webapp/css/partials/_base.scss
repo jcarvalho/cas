@@ -66,14 +66,14 @@ h1.title {
         width: 200px;
         height: 47px;
         padding: 10px;
-        background: url(../img/logotipo-tecnico-c.svg) center center no-repeat;
+        background: url(../images/logotipo-tecnico-c.svg) center center no-repeat;
         text-indent: 200%; /* 100% not working in Firefox */
         white-space: nowrap;
         overflow: hidden;
     }
 }
 .no-svg h1.title a {
-    background: url(../img/logotipo-tecnico-c.png) center center no-repeat;
+    background: url(../images/logotipo-tecnico-c.png) center center no-repeat;
     background-size: 200px 47px !important;
 }
 // retirar escolha do modo de autenticação (mostra autenticacao Técnico ID)
@@ -405,7 +405,7 @@ footer nav ul li {
         left: 0;
         width: 100%;
         height: 100%;
-        background: url(../img/bg-01-blur.jpg);
+        background: url(../images/bg-01-blur.jpg);
         background-size: cover;
     }
     ul.block {

@@ -19,10 +19,6 @@
         var modes = $('#auth-modes');
         modes.className = modes.className ? '' : 'show-menu';
     });
-    $('.paises').addEventListener('click', function() {
-        var modes = $('#country-chooser');
-        modes.className = modes.className ? '' : 'show-menu';
-    });
     all('[data-toggle-auth-method]', function(el) {
         var type = el.getAttribute('data-toggle-auth-method');
         el.addEventListener('click', function() {
