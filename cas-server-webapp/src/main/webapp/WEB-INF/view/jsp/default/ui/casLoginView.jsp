@@ -163,4 +163,5 @@
             </form:form>
           </main>
 
+        <script src="<c:url value="/js/cas.js" />"></script>
 <jsp:directive.include file="includes/bottom.jsp" />

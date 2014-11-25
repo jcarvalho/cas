@@ -46,9 +46,6 @@
         <span class="clearfix"></span>
     </div>
     <!-- end #container -->
-
-    <!-- Scripts -->
-    <script src="<c:url value="/js/cas.js" />"></script>
 </body>
 
 </html>
