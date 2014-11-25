@@ -111,6 +111,21 @@
               <cssFinalFile>cas.css</cssFinalFile>
             </configuration>
           </execution>
+          <execution>
+            <id>minify-js</id>
+            <goals>
+              <goal>minify</goal>
+            </goals>
+            <configuration>
+              <jsSourceDir>js</jsSourceDir>
+              <jsSourceFiles>
+                <include>cas.js</include>
+              </jsSourceFiles>
+              <jsTargetDir>js</jsTargetDir>
+              <jsFinalFile>cas.min.js</jsFinalFile>
+              <webappTargetDir>${project.build.directory}/${project.build.finalName}</webappTargetDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
