@@ -88,6 +88,31 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.samaxes.maven</groupId>
+        <artifactId>minify-maven-plugin</artifactId>
+        <version>1.7.4</version>
+        <configuration>
+          <charset>UTF-8</charset>
+          <nosuffix>true</nosuffix>
+        </configuration>
+        <executions>
+          <execution>
+            <id>minify-css</id>
+            <goals>
+              <goal>minify</goal>
+            </goals>
+            <configuration>
+              <webappSourceDir>${project.build.directory}/${project.build.finalName}</webappSourceDir>
+              <cssSourceDir>css</cssSourceDir>
+              <cssSourceIncludes>
+                <include>cas.css</include>
+              </cssSourceIncludes>
+              <cssFinalFile>cas.css</cssFinalFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
