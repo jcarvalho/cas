@@ -21,14 +21,14 @@
 <%@ page pageEncoding="UTF-8" %>
 <jsp:directive.include file="includes/top.jsp" />
         <header>
-            <h1 class="title"><a href="#">Autenticação no Técnico Lisboa</a></h1>
+            <h1 class="title"><a href="#"><spring:message code="screen.page.title"/></a></h1>
         </header>
 
         <main>
-            <h2>Sair do sistema de autenticação</h2>
-            <p id="waiting">É necessário aguardar enquanto se procede à saída das aplicações que foram usadas.</p>
-            <p id="logout-error" class="hide">O processo de saída das aplicações ficou incompleto. Recomenda-se que o browser seja fechado para completar o processo de saída.</p>
-            <p id="logout-success" class="hide">A saída das aplicações foi bem sucedida.</p>
+            <h2><spring:message code="screen.logout.header"/></h2>
+            <p id="waiting"><spring:message code="screen.logout.please.wait"/></p>
+            <p id="logout-error" class="hide"><spring:message code="screen.logout.error"/></p>
+            <p id="logout-success" class="hide"><spring:message code="screen.logout.success"/></p>
 
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -39,10 +39,7 @@
             <aside class="horizontal" id="service-list">
             </aside>
 
-            <span id="finish-message" class="hide">
-                <p>Pode voltar para o <a href="http://www.tecnico.ulisboa.pt" class="active underline">website institucional do IST</a>.</p>
-                <p>Em alternativa, é possível voltar a <a href="login" class="active underline">entrar</a>.</p>
-            </span>
+            <p id="finish-message" class="hide"><spring:message code="screen.logout.finish.message"/></p>
         </main>
 
       <script>

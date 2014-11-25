@@ -21,12 +21,12 @@
 <%@ page pageEncoding="UTF-8" %>
 <jsp:directive.include file="default/ui/includes/top.jsp" />
         <header>
-            <h1 class="title"><a href="#">Autenticação no Técnico Lisboa</a></h1>
+            <h1 class="title"><a href="#"><spring:message code="screen.page.title"/></a></h1>
         </header>
 
         <main class="center">
-            <h2>Erro no Servidor</h2>
+            <h2><spring:message code="screen.server.error.heading"/></h2>
 
-            <p>Ocorreu um problema no servidor. Por favor tente voltar a aceder à página. Se o erro ocorrer novamente deverá reportar a situação para o email <a href="mailto:dsi@tecnico.ulisboa.pt">dsi@tecnico.ulisboa.pt</a>.</p>
+            <p><spring:message code="screen.server.error.message"/></p>
         </main>
 <jsp:directive.include file="default/ui/includes/bottom.jsp" />

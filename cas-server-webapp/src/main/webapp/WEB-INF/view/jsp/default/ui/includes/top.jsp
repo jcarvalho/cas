@@ -42,7 +42,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><spring:message code="screen.page.title" text="Autenticação no Técnico de Lisboa"/></title>
+    <title><spring:message code="screen.page.title"/></title>
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="keywords" content="">

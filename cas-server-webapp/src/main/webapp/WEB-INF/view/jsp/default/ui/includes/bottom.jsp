@@ -29,8 +29,8 @@
         <footer>
             <nav>
                 <ul>
-                    <li><a href="security.jsp">Segurança</a></li>
-                    <li><a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/">Suporte</a></li>
+                    <li><a href="security.jsp"><spring:message code="screen.label.security"/></a></li>
+                    <li><a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/"><spring:message code="screen.label.support" /></a></li>
                     <c:choose>
                       <c:when test="${locale.language == 'en'}">
                         <li class="right"><a href="${loginUrl}pt" class="active icon-globe">Português</a></li>
