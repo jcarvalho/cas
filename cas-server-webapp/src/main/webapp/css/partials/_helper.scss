@@ -230,11 +230,14 @@ span.flag-icon {
         width: 120px;
         margin: 0 0 1em;
     }
-    .user-link {
-        border-bottom: thin dotted;
-        &:hover {
-            color: $gray;
-        }
+    // .user-link {
+    //    border-bottom: thin dotted;
+    //    &:hover {
+    //        color: $gray;
+    //    }
+    // }
+    .container-fluid a {
+        padding-bottom: 10px;
     }
 }
 img {
@@ -270,14 +273,14 @@ img {
 
 // grande batotice esta media querie
 @media only screen and (min-width: 570px) and (max-width: 768px) and (min-height: 420px) {
-    #bg {
-        background: none !important;
-    }
-    .center-container {
-        padding-top: 0;
-        position: absolute;
-        top: 50px;
-        left: 5%;
-        right: 5%;
-    }
+    //#bg {
+    //    background: none !important;
+    //}
+    //.center-container {
+    //    padding-top: 0;
+    //    position: absolute;
+    //    top: 50px;
+    //    left: 5%;
+    //    right: 5%;
+    //}
 }

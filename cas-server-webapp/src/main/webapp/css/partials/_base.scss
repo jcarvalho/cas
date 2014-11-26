@@ -386,6 +386,7 @@ footer nav ul li {
     }
     html {
         @extend %center-table;
+        background-color: $white;
     }
     body {
         @extend %center-table-cell;
